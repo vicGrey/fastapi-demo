@@ -1,0 +1,32 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8081:8000"
+    environment:
+      MONGO_URL: ${MONGO_URL}
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - frontend
+      - backend
+
+  mongo:
+    image: mongo
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - backend
+
+volumes:
+  mongo-data:
+
+networks:
+  frontend:
+  backend:

@@ -1,0 +1,12 @@
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+  mongo:
+    image: mongo
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
