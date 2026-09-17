@@ -10,6 +10,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 FROM python:3.12-slim AS runner 
 
+LABEL version="1.0" \
+      schema="1.0" \
+      source="github.com/vicGrey/fastapi-demo"
+
 WORKDIR /app
 
 COPY --from=builder /opt/venv /opt/venv
