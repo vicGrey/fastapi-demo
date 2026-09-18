@@ -1,4 +1,4 @@
-FROM python:3.12-slim AS builder
+FROM python:3.13-slim AS builder
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ RUN python -m py_compile main.py
 COPY schema.json data.json validate_data.py .
 RUN python validate_data.py
 
-FROM python:3.12-slim AS runner 
+FROM python:3.13-slim AS runner 
 
 LABEL version="1.0" \
       schema="1.0" \
