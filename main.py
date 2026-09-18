@@ -12,9 +12,7 @@ users = db["users"]
 
 @app.get("/")
 def read_root():
-    return {"status": "ok",
-    "mongo_url": mongo_url
-    }
+    return {"status": "ok"}
 
 @app.post("/users")
 def create_user(name: str):
