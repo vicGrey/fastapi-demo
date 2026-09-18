@@ -15,7 +15,7 @@ for field, expected_type in schema.items():
         raise ValueError (f"{field} must be a string")
 
     if expected_type == "integer" and not isinstance(data[field], int):
-        raise ValueError (f"[field] must be an integer")
+        raise ValueError (f"{field} must be an integer")
 
 for field in data:
     if field not in schema:

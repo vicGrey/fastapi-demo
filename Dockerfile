@@ -8,6 +8,12 @@ ENV PATH="/opt/venv/bin:$PATH"
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+COPY main.py .
+RUN python -m py_compile main.py
+
+COPY schema.json data.json validate_data.py .
+RUN python validate_data.py
+
 FROM python:3.12-slim AS runner 
 
 LABEL version="1.0" \
